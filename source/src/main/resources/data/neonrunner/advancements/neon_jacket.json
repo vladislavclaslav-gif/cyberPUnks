@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "neonrunner:neon_jacket"
+    },
+    "title": {
+      "translate": "advancements.neonrunner.neon_jacket.title"
+    },
+    "description": {
+      "translate": "advancements.neonrunner.neon_jacket.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "minecraft:textures/block/black_concrete.png"
+  },
+  "criteria": {
+    "has": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "neonrunner:neon_jacket"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
