@@ -17,8 +17,12 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 /** Неоновая куртка (нагрудник). Пока надета — Скорость I. Защита как у железного нагрудника, не ломается. */
 public class NeonJacketItem extends ArmorItem {
@@ -46,6 +50,18 @@ public class NeonJacketItem extends ArmorItem {
         if (cur == null || cur.getDuration() < 40) {
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0, true, false, true));
         }
+    }
+
+    /** На игроке рисуется тонкой моделью (см. JacketModel). */
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            @Override
+            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity entity, ItemStack stack, EquipmentSlot slot,
+                                                         HumanoidModel<?> original) {
+                return com.neonrunner.client.JacketModel.get();
+            }
+        });
     }
 
     @Override
